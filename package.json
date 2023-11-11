@@ -1,0 +1,30 @@
+{
+  "name": "solid-test",
+  "scripts": {
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^18.17.5",
+    "esbuild": "^0.14.54",
+    "postcss": "^8.4.28",
+    "solid-start-node": "^0.3.10",
+    "typescript": "^4.9.5",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "@solidjs/meta": "^0.29.1",
+    "@solidjs/router": "^0.8.3",
+    "solid-js": "^1.8.5",
+    "@tanstack/solid-query": "^5.8.1",
+    "@tanstack/solid-query-devtools": "^5.8.1",
+    "graphql": "16.6",
+    "graphql-request": "^6.1.0",
+    "solid-start": "^0.3.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
