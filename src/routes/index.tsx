@@ -1,19 +1,47 @@
+import { createQuery } from "@tanstack/solid-query";
+import { gql, request } from "graphql-request";
 import { Title } from "solid-start";
-import Counter from "~/components/Counter";
+import { QueryBoundary } from "~/components/query-boundary";
 
-export default function Home() {
+const endpoint = "https://graphqlzero.almansi.me/api";
+
+export default function Test() {
+  const query = createQuery(() => ({
+    queryKey: ["posts"],
+    queryFn: async () => {
+      const {
+        posts: { data },
+      } = await request(
+        endpoint,
+        gql`
+          query {
+            posts(options: { slice: { limit: 1 } }) {
+              data {
+                id
+                title
+              }
+            }
+          }
+        `
+      );
+      return data;
+    },
+  }));
+
   return (
     <main>
-      <Title>Hello World</Title>
-      <h1>Hello world!</h1>
-      <Counter />
-      <p>
-        Visit{" "}
-        <a href="https://start.solidjs.com" target="_blank">
-          start.solidjs.com
-        </a>{" "}
-        to learn how to build SolidStart apps.
-      </p>
+      <Title>Solid Query - Test</Title>
+
+      <h1>Solid Query - Test</h1>
+
+      <QueryBoundary
+        loadingFallback={"loading..."}
+        notFoundFallback={"not found"}
+        query={query}
+        errorFallback={"error"}
+      >
+        {(data) => <pre>{JSON.stringify(data, null, 2)}</pre>}
+      </QueryBoundary>
     </main>
   );
 }

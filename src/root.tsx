@@ -35,9 +35,6 @@ export default function Root() {
         <QueryClientProvider client={queryClient}>
           <Suspense>
             <ErrorBoundary>
-              <A href="/">Index</A>
-              <A href="/about">About</A>
-              <A href="/test">Test</A>
               <Routes>
                 <FileRoutes />
               </Routes>
